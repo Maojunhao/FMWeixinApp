@@ -1,8 +1,7 @@
+import 'package:FMWeixinApp/home/FMHomeManager.dart';
 import 'package:FMWeixinApp/home/tabbar/FMTabBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-
 
 class FMHome extends StatefulWidget {
   @override
@@ -35,27 +34,13 @@ class FMHomeState extends State <FMHome> {
 
   Scaffold _scaffold(){
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Title'),
-      ),
+      // TabBar
       bottomNavigationBar: ChangeNotifierProvider(
         create: (context)=> manager,
-        child: _tabBar(),
+        child: FMTabBar(),
       ),
     );
   }
-
-  FMTabBar _tabBar(){
-    return FMTabBar(
-      onTap: (index){
-
-      },
-    );
-  }
-}
-
-class FMHomeManager with ChangeNotifier {
-  int selectedIndex = 0;
 }
 
 

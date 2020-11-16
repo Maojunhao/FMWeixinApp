@@ -1,14 +1,9 @@
 import 'package:FMWeixinApp/home/FMHome.dart';
+import 'package:FMWeixinApp/home/FMHomeManager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FMTabBar extends StatefulWidget {
-  ValueChanged<int> onTap;
-  VoidCallback callback;
-  FMHomeManager manager;
-
-  FMTabBar({Key key, this.onTap, this.manager}) : super(key : key);
-
   @override
   FMTabBarState createState()=> FMTabBarState();
 }
@@ -19,18 +14,14 @@ class FMTabBarState extends State <FMTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    // return _bottomNavigationBar();
-    // var manager = context.read<FMHomeManager>();
-
     // TODO: implement build
     return Consumer<FMHomeManager>(builder: (context, manager, child){
-
-      print(manager.selectedIndex);
-      return _bottomNavigationBar();
+      print('index = ${manager.selectedIndex}');
+      return _bottomNavigationBar(manager);
     });
   }
 
-  BottomNavigationBar _bottomNavigationBar(){
+  BottomNavigationBar _bottomNavigationBar(FMHomeManager manager){
     return BottomNavigationBar(
       // items
       items: [
@@ -40,11 +31,11 @@ class FMTabBarState extends State <FMTabBar> {
         _createItem(AssetImage('assets/images/tab/tab_mine.png'), AssetImage('assets/images/tab/tab_mine_green.png'), '我的'),
       ],
       // 选中 index
-      currentIndex: selectedIndex,
+      currentIndex: manager.selectedIndex,
 
       // 点击事件
       onTap: (index){
-
+        manager.selectedIndex = index;
       },
 
       // 固定大小，取消自适应偏移
