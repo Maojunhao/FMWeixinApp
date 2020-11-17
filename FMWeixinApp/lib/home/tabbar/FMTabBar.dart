@@ -1,4 +1,3 @@
-import 'package:FMWeixinApp/home/FMHome.dart';
 import 'package:FMWeixinApp/home/FMHomeManager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,13 +14,13 @@ class FMTabBarState extends State <FMTabBar> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Consumer<FMHomeManager>(builder: (context, manager, child){
+    return Consumer<FMTabBarManager>(builder: (context, manager, child){
       print('index = ${manager.selectedIndex}');
       return _bottomNavigationBar(manager);
     });
   }
 
-  BottomNavigationBar _bottomNavigationBar(FMHomeManager manager){
+  BottomNavigationBar _bottomNavigationBar(FMTabBarManager manager){
     return BottomNavigationBar(
       // items
       items: [
@@ -53,7 +52,6 @@ class FMTabBarState extends State <FMTabBar> {
       showUnselectedLabels: true,
     );
   }
-
 
   BottomNavigationBarItem _createItem(AssetImage image, AssetImage selectedImage, String title){
     return BottomNavigationBarItem(
