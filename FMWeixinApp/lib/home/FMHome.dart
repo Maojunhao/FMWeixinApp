@@ -1,4 +1,5 @@
 import 'package:FMWeixinApp/home/FMHomeManager.dart';
+import 'package:FMWeixinApp/home/appbar/FMAppBar.dart';
 import 'package:FMWeixinApp/home/pages/FMPages.dart';
 import 'package:FMWeixinApp/home/tabbar/FMTabBar.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,6 @@ class FMHomeState extends State <FMHome> {
         create: (context)=> manager.tabBarManager,
         child: FMTabBar(),
       ),
-
       body: ChangeNotifierProvider(
         create: (context) => manager.pagesManager,
         child: FMPages(),

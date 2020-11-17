@@ -1,4 +1,5 @@
 import 'package:FMWeixinApp/home/FMHomeManager.dart';
+import 'package:FMWeixinApp/tools/FMColor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,8 +42,8 @@ class FMTabBarState extends State <FMTabBar> {
       type: BottomNavigationBarType.fixed,
 
       // 字体颜色
-      unselectedItemColor: Color.fromRGBO(51, 51, 51, 1),
-      selectedItemColor: Color.fromRGBO(0, 186, 85, 1),
+      unselectedItemColor: FMColors.wx_black,
+      selectedItemColor: FMColors.wx_green,
 
       // 字体大小
       selectedFontSize: 15,

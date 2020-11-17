@@ -41,6 +41,10 @@ class FMHomeManager {
   );
   FMTabBarManager get tabBarManager => _tabBarManager;
 
+  // AppBar Manager
+  FMAppBarManager _appBarManager = FMAppBarManager();
+  FMAppBarManager get appBarManager => _appBarManager;
+
   // 发送通知
   void notifyAll(){
     _pagesManager.notifyListeners();
@@ -94,5 +98,16 @@ class FMTabBarManager with ChangeNotifier {
   set selectedIndex(int index){
     _selectedIndex = index;
     this._valueChanged(index);
+  }
+}
+
+class FMAppBarManager with ChangeNotifier {
+  // 下标
+  int _selectedIndex = 0;
+
+  // 下标 get, set
+  int get selectedIndex => _selectedIndex;
+  set selectedIndex(int index){
+    _selectedIndex = index;
   }
 }
