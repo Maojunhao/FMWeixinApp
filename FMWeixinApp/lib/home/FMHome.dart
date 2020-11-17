@@ -2,6 +2,7 @@ import 'package:FMWeixinApp/home/FMHomeManager.dart';
 import 'package:FMWeixinApp/home/appbar/FMAppBar.dart';
 import 'package:FMWeixinApp/home/pages/FMPages.dart';
 import 'package:FMWeixinApp/home/tabbar/FMTabBar.dart';
+import 'package:FMWeixinApp/tools/FMColor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,7 @@ class FMHomeState extends State <FMHome> {
         create: (context) => manager.pagesManager,
         child: FMPages(),
       ),
+      backgroundColor: FMColors.wx_gray,
       // body: _body(),
     );
   }
