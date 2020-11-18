@@ -14,83 +14,105 @@ class FMFindState extends State <FMFind> {
 
   List <FMFindModel> _models = [];
 
+  List <FMFindMenuModel> _menuModels = [];
+
   @override
   void initState() {
     // TODO: implement initState
     _models.clear();
 
-    _models.add(FMFindModel('assets/images/find/find_friend.png', '朋友圈'));
-    _models.add(FMFindModel('assets/images/find/find_scan.png', '扫一扫'));
-    _models.add(FMFindModel('assets/images/find/find_look.png', '看一看'));
-    _models.add(FMFindModel('assets/images/find/find_search.png', '搜一搜'));
-    _models.add(FMFindModel('assets/images/find/find_game.png', '游戏'));
-    _models.add(FMFindModel('assets/images/find/find_small_project.png', '小程序'));
-
+    _initModels();
+    _initMenuModels(_models);
     _initSliversWithModels(_models);
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
     return CustomScrollView(
       slivers: _slivers,
     );
-
-    // return CustomScrollView(
-    //   slivers: [
-    //     SliverAppBar(
-    //       title: Text('发现'),
-    //       backgroundColor: FMColors.wx_gray,
-    //       floating: true,
-    //       pinned: true,
-    //     ),
-    //     SliverFixedExtentList(
-    //       delegate: SliverChildBuilderDelegate(
-    //         (context, index) => FMFindItem(),
-    //         childCount: 3,
-    //       ),
-    //       itemExtent: 60.0,
-    //     ),
-    //     SliverFixedExtentList(
-    //       delegate: SliverChildBuilderDelegate(
-    //         (context, index) => Padding(padding: EdgeInsets.only(top: 10)),
-    //         childCount: 1,
-    //       ),
-    //       itemExtent: 10.0,
-    //     ),
-    //     SliverFixedExtentList(
-    //       delegate: SliverChildBuilderDelegate(
-    //         (context, index) => FMFindItem(),
-    //         childCount: 3,
-    //       ),
-    //       itemExtent: 60.0,
-    //     ),
-    //   ],
-    // );
-  }
-
-  void _initSliversWithModels(models){
-    _slivers.add(_sliverAppBar());
-    _slivers.add(_sliverFixedExtentList());
   }
 
   SliverAppBar _sliverAppBar(){
     return SliverAppBar(
-      title: Text('发现'),
+      title: Text('发现',
+        style: TextStyle(fontSize: 20),
+      ),
       backgroundColor: FMColors.wx_gray,
       floating: true,
       pinned: true,
+      elevation: 0.0,
     );
   }
 
-  SliverFixedExtentList _sliverFixedExtentList(){
+  // 功能 Items
+  SliverFixedExtentList _sliverFixedExtentList(FMFindMenuModel menuModel){
     return SliverFixedExtentList(
       delegate: SliverChildBuilderDelegate(
-            (context, index) => FMFindItem(_models[index]),
-        childCount: _models.length,
+            (context, index) => FMFindItem(menuModel.models[index]),
+        childCount: menuModel.models.length,
       ),
       itemExtent: 60.0,
     );
+  }
+
+  // 空白 blank
+  SliverFixedExtentList _sliverDividList(FMFindMenuModel menuModel){
+    return SliverFixedExtentList(
+      delegate: SliverChildBuilderDelegate(
+            (context, index) => Padding(padding: EdgeInsets.zero),
+        childCount: menuModel.models.length,
+      ),
+      itemExtent: 10.0,
+    );
+  }
+
+
+  void _initModels(){
+    _models.add(FMFindModel('assets/images/find/find_friend.png', '朋友圈', 'function'));
+    _models.add(FMFindModel('', '', 'divid'));
+    _models.add(FMFindModel('assets/images/find/find_scan.png', '扫一扫', ''));
+    _models.add(FMFindModel('', '', 'divid'));
+    _models.add(FMFindModel('assets/images/find/find_look.png', '看一看', ''));
+    _models.add(FMFindModel('assets/images/find/find_search.png', '搜一搜', ''));
+    _models.add(FMFindModel('', '', 'divid'));
+    _models.add(FMFindModel('assets/images/find/find_game.png', '游戏', ''));
+    _models.add(FMFindModel('', '', 'divid'));
+    _models.add(FMFindModel('assets/images/find/find_small_project.png', '小程序', ''));
+  }
+
+  void _initSliversWithModels(models){
+    _slivers.add(_sliverAppBar());
+
+    _menuModels.forEach((menuModel) {
+      if (menuModel.dividModel) {
+        _slivers.add(_sliverDividList(menuModel));
+      } else {
+        _slivers.add(_sliverFixedExtentList(menuModel));
+      }
+    });
+  }
+
+  void _initMenuModels(List <FMFindModel> items){
+    List <FMFindModel> _tempModels = [];
+    items.forEach((model) {
+      if (model.type == 'divid') {
+        _menuModels.add(new FMFindMenuModel(_tempModels));
+        _tempModels.clear();
+        _tempModels.add(model);
+        FMFindMenuModel menuModel = new FMFindMenuModel(_tempModels);
+        menuModel.dividModel = true;
+        _menuModels.add(menuModel);
+        _tempModels.clear();
+      } else {
+        _tempModels.add(model);
+      }
+    });
+
+    if (_tempModels.length > 0) {
+      _menuModels.add(new FMFindMenuModel(_tempModels));
+      _tempModels.clear();
+    }
   }
 }
