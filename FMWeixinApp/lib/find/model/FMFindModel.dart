@@ -16,7 +16,6 @@ class FMFindMenuModel {
   List <FMFindModel> _models = [];
   List <FMFindModel> get models => _models;
 
-
   FMFindMenuModel(List <FMFindModel> models) {
     _models.clear();
     models.forEach((model) {

@@ -68,7 +68,6 @@ class FMFindState extends State <FMFind> {
     );
   }
 
-
   void _initModels(){
     _models.add(FMFindModel('assets/images/find/find_friend.png', '朋友圈', 'function'));
     _models.add(FMFindModel('', '', 'divid'));

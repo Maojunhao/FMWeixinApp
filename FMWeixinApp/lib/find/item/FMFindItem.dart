@@ -25,7 +25,10 @@ class FMFindItemState extends State <FMFindItem> {
 
   Container _container(){
     return Container(
-      child: _row(),
+      child: Padding(
+        padding: EdgeInsets.only(left: 15, right: 15),
+        child: _row(),
+      ),
       color: Colors.white,
     );
   }
@@ -34,7 +37,6 @@ class FMFindItemState extends State <FMFindItem> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(padding: EdgeInsets.all(10)),
         Row(
           children: [
             SizedBox(
@@ -54,7 +56,6 @@ class FMFindItemState extends State <FMFindItem> {
           height: 30,
           child: Image(image: AssetImage('assets/images/find/find_arrow_right.png')),
         ),
-        Padding(padding: EdgeInsets.all(10)),
       ],
     );
   }

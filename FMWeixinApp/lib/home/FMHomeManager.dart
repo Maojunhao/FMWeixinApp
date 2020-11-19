@@ -1,7 +1,7 @@
 import 'package:FMWeixinApp/chat/FMChat.dart';
 import 'package:FMWeixinApp/find/FMFind.dart';
 import 'package:FMWeixinApp/maillist/FMMailList.dart';
-import 'package:FMWeixinApp/mine/FMMine.dart';
+import 'package:FMWeixinApp/mine/mine/FMMine.dart';
 import 'package:flutter/material.dart';
 
 class FMHomeManager {
