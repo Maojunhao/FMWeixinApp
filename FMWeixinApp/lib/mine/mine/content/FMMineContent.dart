@@ -18,29 +18,6 @@ class FMMineContent extends StatelessWidget{
     return Column(
       children: _items,
     );
-
-
-
-    return ListView.builder(
-      itemCount: _models.length + 1,
-      itemBuilder: (context ,index){
-        if (index == 0) {
-          return Container(
-            height: 150,
-            child: FMMineHeader(),
-          );
-        }
-
-        FMFindModel model = _models[index - 1];
-        if (model.type == 'divid') {
-          return Padding(padding: EdgeInsets.only(top: 10));
-        }
-        return Container(
-          height: 60.0,
-          child: FMFindItem(model),
-        );
-      },
-    );
   }
 
   void _initModels(){

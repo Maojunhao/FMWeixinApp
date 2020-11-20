@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:FMWeixinApp/mine/mine/body/FMMineBody.dart';
 import 'package:flutter/gestures.dart';
@@ -15,6 +16,8 @@ class FMMineState extends State <FMMine> {
 
   double _topY = 0;
   bool _hideTop = true;
+
+  final double _screenHeight = window.physicalSize.height / 2.0;
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +65,16 @@ class FMMineState extends State <FMMine> {
   double _calculationTopY(){
     double offsetY = 0;
 
+    print('$_screenHeight screen' );
+
     if (!_hideTop) {
-      if (_topY < 800) {
+      if (_topY < _screenHeight - 200 - 64) {
         offsetY = 0;
         _hideTop = true;
       }
     } else {
       if (_topY > 200) {
-        offsetY = 1000;
+        offsetY = _screenHeight - 64;
         _hideTop = false;
       }
     }
