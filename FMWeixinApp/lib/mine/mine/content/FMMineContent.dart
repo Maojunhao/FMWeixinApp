@@ -21,15 +21,15 @@ class FMMineContent extends StatelessWidget{
   }
 
   void _initModels(){
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/mine/mine_pay.png', '支付', 'function'));
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/mine/mine_collection.png', '收藏', ''));
-    _models.add(FMFindModel('assets/images/mine/mine_album.png', '相册', ''));
-    _models.add(FMFindModel('assets/images/mine/mine_wallet.png', '卡包', ''));
-    _models.add(FMFindModel('assets/images/mine/mine_face.png', '表情', ''));
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/mine/mine_setting.png', '设置', ''));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/mine/mine_pay.png', '支付', 'function', false));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/mine/mine_collection.png', '收藏', '', true));
+    _models.add(FMFindModel('assets/images/mine/mine_album.png', '相册', '', true));
+    _models.add(FMFindModel('assets/images/mine/mine_wallet.png', '卡包', '', true));
+    _models.add(FMFindModel('assets/images/mine/mine_face.png', '表情', '', false));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/mine/mine_setting.png', '设置', '', false));
   }
 
   void _intItems(){
@@ -41,9 +41,7 @@ class FMMineContent extends StatelessWidget{
         ),
     );
 
-    _items.add(Padding(padding: EdgeInsets.only(top: 10),));
     _models.forEach((model) {
-
       if (model.type == 'divid') {
         _items.add(Padding(padding: EdgeInsets.only(top: 10),));
       } else {

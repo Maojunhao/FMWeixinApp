@@ -1,4 +1,5 @@
 import 'package:FMWeixinApp/find/model/FMFindModel.dart';
+import 'package:FMWeixinApp/tools/FMColor.dart';
 import 'package:flutter/material.dart';
 
 class FMFindItem extends StatefulWidget {
@@ -18,8 +19,29 @@ class FMFindItemState extends State <FMFindItem> {
         onTap: (){
 
         },
-        child: _container(),
+        child: _stack(),
       ),
+    );
+  }
+
+  Stack _stack(){
+    return Stack(
+      children: [
+        Positioned(
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          child: _container(),
+        ),
+        Positioned(
+          bottom: 0,
+          height: 1,
+          left: 60,
+          right: 0,
+          child: Divider(color: FMColors.wx_gray, thickness: 1,),
+        ),
+      ],
     );
   }
 

@@ -1,12 +1,14 @@
+import 'package:flutter/cupertino.dart';
+
 class FMFindModel {
   String imageName;
   String title;
   // 分割线
-  String hasDivid;
+  bool hasDivid;
   // type
   String type;
 
-  FMFindModel(this.imageName, this.title, this.type);
+  FMFindModel(this.imageName, this.title, this.type, this.hasDivid);
 }
 
 class FMFindMenuModel {

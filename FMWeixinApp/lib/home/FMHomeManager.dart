@@ -1,6 +1,6 @@
 import 'package:FMWeixinApp/chat/FMChat.dart';
 import 'package:FMWeixinApp/find/FMFind.dart';
-import 'package:FMWeixinApp/maillist/FMMailList.dart';
+import 'package:FMWeixinApp/contacts/contacts/FMContacts.dart';
 import 'package:FMWeixinApp/mine/mine/FMMine.dart';
 import 'package:flutter/material.dart';
 

@@ -69,16 +69,16 @@ class FMFindState extends State <FMFind> {
   }
 
   void _initModels(){
-    _models.add(FMFindModel('assets/images/find/find_friend.png', '朋友圈', 'function'));
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/find/find_scan.png', '扫一扫', ''));
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/find/find_look.png', '看一看', ''));
-    _models.add(FMFindModel('assets/images/find/find_search.png', '搜一搜', ''));
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/find/find_game.png', '游戏', ''));
-    _models.add(FMFindModel('', '', 'divid'));
-    _models.add(FMFindModel('assets/images/find/find_small_project.png', '小程序', ''));
+    _models.add(FMFindModel('assets/images/find/find_friend.png', '朋友圈', 'function', false));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/find/find_scan.png', '扫一扫', '', false));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/find/find_look.png', '看一看', '', true));
+    _models.add(FMFindModel('assets/images/find/find_search.png', '搜一搜', '', false));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/find/find_game.png', '游戏', '', false));
+    _models.add(FMFindModel('', '', 'divid', false));
+    _models.add(FMFindModel('assets/images/find/find_small_project.png', '小程序', '', false));
   }
 
   void _initSliversWithModels(models){
