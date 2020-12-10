@@ -48,7 +48,12 @@ class FMMineContent extends StatelessWidget{
         _items.add(
             Container(
               height: 60.0,
-              child: FMFindItem(model),
+              child: FMFindItem(
+                model: model,
+                onTap: (model){
+                  print('${model.title}');
+                },
+              ),
             ),
         );
       }

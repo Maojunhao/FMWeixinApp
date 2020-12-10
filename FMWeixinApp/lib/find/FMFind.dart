@@ -50,7 +50,12 @@ class FMFindState extends State <FMFind> {
   SliverFixedExtentList _sliverFixedExtentList(FMFindMenuModel menuModel){
     return SliverFixedExtentList(
       delegate: SliverChildBuilderDelegate(
-            (context, index) => FMFindItem(menuModel.models[index]),
+            (context, index) => FMFindItem(
+              model: menuModel.models[index],
+              onTap: (model){
+
+              },
+            ),
         childCount: menuModel.models.length,
       ),
       itemExtent: 60.0,

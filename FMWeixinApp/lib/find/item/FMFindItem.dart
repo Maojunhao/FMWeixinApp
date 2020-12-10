@@ -3,8 +3,13 @@ import 'package:FMWeixinApp/tools/FMColor.dart';
 import 'package:flutter/material.dart';
 
 class FMFindItem extends StatefulWidget {
-  FMFindModel model;
-  FMFindItem(this.model);
+  final FMFindModel model;
+  final void Function(FMFindModel model) onTap;
+  const FMFindItem({
+    Key key,
+    this.model,
+    this.onTap,
+  }):super(key: key);
 
   @override
   FMFindItemState createState()=> FMFindItemState();
@@ -17,7 +22,7 @@ class FMFindItemState extends State <FMFindItem> {
     return SizedBox(
       child: GestureDetector(
         onTap: (){
-
+          if (widget.onTap != null) widget.onTap(widget.model);
         },
         child: _stack(),
       ),

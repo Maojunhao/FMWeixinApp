@@ -1,135 +1,117 @@
-import 'package:FMWeixinApp/common/FMTableView/FMTableView.dart';
 import 'package:FMWeixinApp/tools/FMColor.dart';
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:ui_tableview/ui_tableview.dart';
+
+const List _sections = ['星标', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',];
 
 class FMContactContent extends StatefulWidget {
   @override
   FMContactContentState createState() => FMContactContentState();
 }
 
-List _elements = [
-  {'name': 'John', 'group': 'Team A'},
-  {'name': 'Will', 'group': 'Team B'},
-  {'name': 'Beth', 'group': 'Team A'},
-  {'name': 'Miranda', 'group': 'Team B'},
-  {'name': 'Mike', 'group': 'Team C'},
-  {'name': 'Danny', 'group': 'Team C'},
-  {'name': 'Mike', 'group': 'Team C'},
-  {'name': 'Danny', 'group': 'Team C'},
-  {'name': 'Mike', 'group': 'Team C'},
-  {'name': 'Danny', 'group': 'Team C'},
-  {'name': 'Mike', 'group': 'Team C'},
-  {'name': 'Danny', 'group': 'Team C'},
-  {'name': 'Danny', 'group': 'Team D'},
-  {'name': 'Mike', 'group': 'Team D'},
-  {'name': 'Danny', 'group': 'Team D'},
-  {'name': 'Danny', 'group': 'Team E'},
-  {'name': 'Mike', 'group': 'Team E'},
-  {'name': 'Danny', 'group': 'Team E'},
-];
-
 class FMContactContentState extends State <FMContactContent> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    ScrollController _controller = ScrollController(
-      initialScrollOffset: 150,
-    );
 
-    GroupedListView _listView = GroupedListView(
-      elements: _elements,
-      groupBy: (element){
-        return element['group'];
-      },
-      controller: _controller,
-      groupSeparatorBuilder: (value) {
-        print('$value');
+    UITableView _contacts(){
+      int _numberOfRowsInSection(context, index){
+        return 4;
+      }
+
+      int _numberOfSections(context){
+        return _sections.length + 1;
+      }
+
+      Widget _itemForRowAtIndexPath(context, UIIndexPath indexPath){
+        String text;
+        Image image;
+
+        if (indexPath.section == 0) {
+          if (indexPath.row == 0) {
+            text = '新的朋友';
+            image = Image.asset('assets/images/contacts/contacts_new_friend.png');
+          } else if (indexPath.row == 1) {
+            text = '群聊';
+            image = Image.asset('assets/images/contacts/contacts_grouped.png');
+          } else if (indexPath.row == 2) {
+            text = '标签';
+            image = Image.asset('assets/images/contacts/contacts_tag.png');
+          } else if (indexPath.row == 3) {
+            text = '公众号';
+            image = Image.asset('assets/images/contacts/contacts_public.png');
+          }
+
+          print(image);
+
+        } else {
+          text = "小小  ${_sections[indexPath.section - 1]} - ${indexPath.row}";
+          image = Image.network('https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/tb.1.2c0e048.VFUJtjrbQl4EwWKNr0H0GA?t=1497799370');
+        }
+
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(color: Colors.white,),
+            Row(
+              children: [
+                Padding(padding: EdgeInsets.only(left: 20)),
+                Container(
+                  padding: EdgeInsets.all(5),
+                  child: image,
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                Text( text, style: TextStyle( fontSize: 18, ), )
+              ],
+            ),
+            Positioned(child: Divider(height: 2,),bottom: 0, left: 80,right: 0,),
+          ],
+        );
+      }
+
+      Widget _widgetForHeaderInSection(context, section){
+        if (section == 0) return Container();
+
         return Container(
           alignment: Alignment.centerLeft,
           color: FMColors.wx_gray,
-          height: 30,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Text(
-              value,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: FMColors.wx_text_gray),
-            ),
-          ),
+          padding: EdgeInsets.only(left: 20),
+          child: Text("${_sections[section - 1]}"),
         );
-      } ,
-      floatingHeader: false,
-      stickyHeaderBackgroundColor: Colors.red,
-      groupComparator: (value1, value2) => value2.compareTo(value1),
-      itemComparator: (item1, item2) =>
-          item1['name'].compareTo(item2['name']),
-      order: GroupedListOrder.DESC,
-      useStickyGroupSeparators: true,
-      itemBuilder: (c , element){
-        return Card(
-          elevation: 8.0,
-          margin: new EdgeInsets.symmetric(horizontal: 10.0),
-          child: Container(
-            height: 100,
-            alignment: Alignment.center,
-            child: ListTile(
-              contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.0),
-              leading: Icon(Icons.account_circle),
-              title: Text(element['name']),
-              trailing: Icon(Icons.arrow_forward),
-            ),
-          ),
-        );
-      },
-    );
+      }
 
+      Widget _widgetForHoverHeader(context, section){
+        if (section == 0) return Container();
 
-
-    FMTableView _tableView = FMTableView(
-      numberOfRowsInSection: (context, index) {
-        return 10;
-      },
-      numberOfSections: (context) {
-        return 3;
-      },
-      itemForRowAtIndexPath: (context, indexPath){
-        return Card(
-          elevation: 8.0,
-          margin: new EdgeInsets.symmetric(horizontal: 10.0),
-          child: Container(
-            height: 100,
-            alignment: Alignment.center,
-            child: ListTile(
-              contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.0),
-              leading: Icon(Icons.account_circle),
-              title: Text("indexPath section = ${indexPath.section}, row = ${indexPath.row}"),
-              trailing: Icon(Icons.arrow_forward),
-            ),
-          ),
-        );
-      },
-      widgetForHeaderInSection: (context, section){
-        print("section");
         return Container(
-          alignment: Alignment.center,
-          color: Colors.brown,
-          child: Text("Header $section"),
+          alignment: Alignment.centerLeft,
+          color: FMColors.wx_green,
+          padding: EdgeInsets.only(left: 20),
+          child: Text("${_sections[section - 1]}", style: TextStyle(color: Colors.green),),
         );
-      },
+      }
 
-      heightForHeaderInSection: (context, section){
-        return 50;
-      },
-      heightForRowAtIndexPath: (context, indexPath){
-        return 60;
-      },
-    );
+      double _heightForHeaderInSection(context, section){
+        if (section == 0) return 0;
+        return 30;
+      }
 
+      double _heightForRowAtIndexPath(context, indexPath){
+        return 55;
+      }
 
+      return UITableView(
+        numberOfRowsInSection: _numberOfRowsInSection,
+        numberOfSections: _numberOfSections,
+        itemForRowAtIndexPath: _itemForRowAtIndexPath,
+        widgetForHeaderInSection: _widgetForHeaderInSection,
+        heightForRowAtIndexPath: _heightForRowAtIndexPath,
 
-    return _tableView;
+        heightForHeaderInSection: _heightForHeaderInSection,
+        widgetForHoverHeader: _widgetForHoverHeader,
+      );
+    }
+
+    return _contacts();
   }
 }

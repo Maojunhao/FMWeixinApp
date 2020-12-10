@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const List _sections = ['星标', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',];
+
 class FMContactsIndexes extends StatefulWidget {
   @override
   FMContactsIndexesState createState() => FMContactsIndexesState();
@@ -18,9 +20,9 @@ class FMContactsIndexesState extends State <FMContactsIndexes> {
   List <Widget> _indexes(){
     List <Widget> widgests = [];
 
-    for (int i=0; i < 20; i++){
-      widgests.add(Text('${i+1}'));
-    }
+    _sections.forEach((title) {
+      widgests.add(Text('$title'));
+    });
 
     return widgests;
   }
